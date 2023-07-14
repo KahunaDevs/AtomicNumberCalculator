@@ -1,95 +1,70 @@
-import Image from 'next/image'
+'use client';
+import { useEffect, useState } from 'react';
 import styles from './page.module.css'
+import Element from './components/Element.js';
+import Spacer from './components/Spacer';
+
 
 export default function Home() {
+  const [elements, setData] = useState([]);
+  const [target, setTarget] = useState(200);
+  const [currentSum, setCurrentSum] = useState(0);
+  const [selections, setSelections] = useState([]);
+
+  const handleAdd = (element) => {
+    setCurrentSum(currentSum + element.Number);
+    setSelections([...selections, element]);
+  }
+
+  const handleRemove = (element) => {
+    setCurrentSum(currentSum - element.Number);
+    // Remove only one instance of the number from the selections array
+    const index = selections.indexOf(element);
+    if (index > -1) {
+      selections.splice(index, 1);
+    }
+    setSelections([...selections]);
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/data/data.json');
+      const jsonData = await response.json();
+      setData(jsonData);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="./vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <h1 className={styles.title}>
+        Atomic Number Calculator
+      </h1>
+      <div className={styles.periodicTableContainer}>
+        <div className={styles.periodicTable}>
+          {
+            // Loop through the elements array and create an Element component for each element. If Number is 0, instead create a spacer item
+            elements.map((element, index) => {
+              if (element.Number === 0) {
+                return <Spacer key={index} start={element.Start} end={element.End} />
+              } else {
+                return <Element key={index} number={element.Number} symbol={element.Symbol} name={element.Name} onLeftClick={() => handleAdd(element)} onRightClick={() => handleRemove(element)} />
+
+              }
+            })
+          }
         </div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="./next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className={styles.inputArea}>
+        <div className={styles.inputRow}>
+          <div className={styles.targetInput}><label htmlFor="target">Target Sum</label><input type="text" id="target" name="target" placeholder="Target Atomic Number" value={target} /></div>
+          <p>{currentSum}</p>
+        </div>
+        <textarea id="output" name="output" rows="10" cols="50" placeholder="Output"></textarea>
       </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
   )
 }
