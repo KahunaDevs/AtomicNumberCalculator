@@ -1,34 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Atomic Number Calculator
+
+The Atomic Number Calculator is a website that features an interactive periodic table, allowing users to select elements and calculate the sum of their atomic numbers.
+
+## Features
+
+- **Interactive Periodic Table**: The website displays a fully interactive periodic table, enabling users to click on elements to select them.
+
+- **Element Selection**: Users can easily select multiple elements by clicking on them. The selected elements are visually highlighted on the periodic table.
+
+- **Calculation**: Once one or more elements are selected, users can perform calculations on the selected elements. The website offers options to calculate the sum of atomic numbers, atomic masses, or any other desired property associated with the elements.
 
 ## Getting Started
 
-First, run the development server:
+To run the Atomic Number Calculator locally on your machine, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Clone the repository:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```
+   git clone https://github.com/KahunaMC/AtomicNumberCalculator.git
+   ```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+2. Navigate to the project directory:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```
+   cd AtomicNumberCalculator
+   ```
 
-## Learn More
+3. Install the project with yarn:
 
-To learn more about Next.js, take a look at the following resources:
+   ```
+   yarn install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Start the development server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```
+    yarn dev
+    ```
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Upon accessing the website, you will see the interactive periodic table.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. Click on the elements you wish to select. The selected elements will be visually highlighted.
+
+3. The result of the calculation will be displayed on the website.
+
+4. Right click to deslect an element.
+
+## Contributing
+
+Contributions to the Atomic Number Calculator project are welcomed! To contribute, please follow these steps:
+
+1. Fork the repository.
+
+2. Create a new branch for your feature or bug fix.
+
+3. Implement your changes and thoroughly test them.
+
+4. Commit your changes with descriptive commit messages.
+
+5. Push your changes to your forked repository.
+
+6. Open a pull request, explaining the changes you have made.
+
+7. Await a review and address any feedback if necessary.
+
+## License
+
+This project is licensed under the [GPL-3.0](LICENSE). Feel free to modify and use it in your own projects.
+
+## Acknowledgments
+
+The Atomic Number Calculator project was inspired by the aim to create an educational and interactive tool for exploring the periodic table. We would like to express our gratitude to the developers of various open-source libraries and resources that were utilized in this project.
+
+Thank you for using the Atomic Number Calculator! We hope you find it helpful.
