@@ -10,18 +10,19 @@ export default function Home() {
   const [target, setTarget] = useState(200);
   const [currentSum, setCurrentSum] = useState(0);
   const [selections, setSelections] = useState([]);
+  const [snackbar, setSnackbar] = useState(null);
 
   const handleAdd = (element) => {
-    setCurrentSum(currentSum + element.Number);
+    setCurrentSum(currentSum + element.number);
     setSelections([...selections, element]);
   }
 
   const handleRemove = (element) => {
-    setCurrentSum(currentSum - element.Number);
     // Remove only one instance of the number from the selections array
     const index = selections.indexOf(element);
     if (index > -1) {
       selections.splice(index, 1);
+      setCurrentSum(currentSum - element.number);
     }
     setSelections([...selections]);
   }
@@ -46,11 +47,10 @@ export default function Home() {
           {
             // Loop through the elements array and create an Element component for each element. If Number is 0, instead create a spacer item
             elements.map((element, index) => {
-              if (element.Number === 0) {
-                return <Spacer key={index} start={element.Start} end={element.End} />
+              if (element.number === 0) {
+                return <Spacer key={index} start={element.start} end={element.end} />
               } else {
-                return <Element key={index} number={element.Number} symbol={element.Symbol} name={element.Name} onLeftClick={() => handleAdd(element)} onRightClick={() => handleRemove(element)} />
-
+                return <Element key={index} number={element.number} symbol={element.symbol} name={element.name} group={element.group} grouping={element.grouping} selected={selections.some(x => x === element)} onLeftClick={() => handleAdd(element)} onRightClick={() => handleRemove(element)} />
               }
             })
           }
@@ -59,10 +59,50 @@ export default function Home() {
 
       <div className={styles.inputArea}>
         <div className={styles.inputRow}>
-          <div className={styles.targetInput}><label htmlFor="target">Target Sum</label><input type="text" id="target" name="target" placeholder="Target Atomic Number" value={target} /></div>
-          <p>{currentSum}</p>
+          <div className={styles.targetInput}>
+            <label htmlFor="target">Target Sum</label>
+            <input type="text" id="target" name="target" placeholder="Target Atomic Number" onChange={(evt => setTarget(evt.target.value))} value={target} />
+          </div>
+          <div className={styles.currentSumOutput}>
+            <label htmlFor="current">Current Sum</label>
+            <p name="current" className={currentSum < target ? styles.underTarget : currentSum > target ? styles.overTarget : styles.correct}>{currentSum}</p>
+          </div>
         </div>
-        <textarea id="output" name="output" rows="10" cols="50" placeholder="Output"></textarea>
+        <textarea id="output" name="output" rows="10" cols="50" placeholder="Elements" readOnly value={
+          selections.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue.symbol;
+          }, "")
+        }
+          onClick={
+            (evt) => {
+              // Check to see if we have text, if not skip the copy
+              if (evt.target.value === "") {
+                return;
+              }
+
+              if (!navigator.clipboard) {
+                evt.target.select();
+                document.execCommand("copy");
+              } else {
+                var outputText = evt.target.value
+                navigator.clipboard.writeText(outputText).then(
+                  function () {
+                    setSnackbar("Copied to clipboard");
+                    setTimeout(() => {
+                      setSnackbar(null);
+                    }, 2000);
+                  })
+                  .catch(
+                    function () {
+                      setSnackbar("Error copying to clipboard");
+                      setTimeout(() => {
+                        setSnackbar(null);
+                      }, 2000);
+                    });
+              }
+            }
+          }></textarea>
+        <div id="snackbar" className={snackbar ? "visible" : ""}>{snackbar}</div>
       </div>
 
     </main>
