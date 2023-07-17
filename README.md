@@ -10,7 +10,7 @@ https://kahunamc.github.io/AtomicNumberCalculator/
 
 - **Element Selection**: Users can easily select multiple elements by clicking on them. The selected elements are visually highlighted on the periodic table.
 
-- **Calculation**: Once one or more elements are selected, users can perform calculations on the selected elements. The website offers options to calculate the sum of atomic numbers, atomic masses, or any other desired property associated with the elements.
+- **Calculation**: When items are selected the atomic weights will be summed. You can also change the target sum with the text entry on the left.
 
 ## Usage
 
