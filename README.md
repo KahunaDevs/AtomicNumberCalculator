@@ -75,6 +75,6 @@ This project is licensed under the [GPL-3.0](LICENSE). Feel free to modify and u
 
 ## Acknowledgments
 
-The Atomic Number Calculator project was inspired by the aim to create an educational and interactive tool for exploring the periodic table. We would like to express our gratitude to the developers of various open-source libraries and resources that were utilized in this project.
+We would like to express our gratitude to the developers of various open-source libraries and resources that were utilized in this project.
 
 Thank you for using the Atomic Number Calculator! We hope you find it helpful.
