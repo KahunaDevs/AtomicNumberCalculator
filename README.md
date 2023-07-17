@@ -2,6 +2,8 @@
 
 The Atomic Number Calculator is a website that features an interactive periodic table, allowing users to select elements and calculate the sum of their atomic numbers.
 
+https://kahunamc.github.io/AtomicNumberCalculator/
+
 ## Features
 
 - **Interactive Periodic Table**: The website displays a fully interactive periodic table, enabling users to click on elements to select them.
@@ -10,7 +12,17 @@ The Atomic Number Calculator is a website that features an interactive periodic 
 
 - **Calculation**: Once one or more elements are selected, users can perform calculations on the selected elements. The website offers options to calculate the sum of atomic numbers, atomic masses, or any other desired property associated with the elements.
 
-## Getting Started
+## Usage
+
+1. Upon accessing the website, you will see the interactive periodic table.
+
+2. Click on the elements you wish to select. The selected elements will be visually highlighted.
+
+3. The result of the calculation will be displayed on the website.
+
+4. Right click to deslect an element.
+
+## Getting the code
 
 To run the Atomic Number Calculator locally on your machine, follow these steps:
 
@@ -38,15 +50,6 @@ To run the Atomic Number Calculator locally on your machine, follow these steps:
     yarn dev
     ```
 
-## Usage
-
-1. Upon accessing the website, you will see the interactive periodic table.
-
-2. Click on the elements you wish to select. The selected elements will be visually highlighted.
-
-3. The result of the calculation will be displayed on the website.
-
-4. Right click to deslect an element.
 
 ## Contributing
 
