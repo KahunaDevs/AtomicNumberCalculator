@@ -2,7 +2,7 @@
 
 The Atomic Number Calculator is a website that features an interactive periodic table, allowing users to select elements and calculate the sum of their atomic numbers.
 
-https://kahunamc.github.io/AtomicNumberCalculator/
+https://kahunadevs.github.io/AtomicNumberCalculator/
 
 ## Features
 
